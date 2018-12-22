@@ -22,7 +22,8 @@ const styles = {
     flexGrow: 1
   },
   grow: {
-    flexGrow: 1
+    flexGrow: 1,
+    color: '#FFF3B0'
   },
   menuButton: {
     marginLeft: -12,
@@ -72,24 +73,24 @@ class Navbar extends Component {
     )
     return (
       <div className={classes.root}>
-        <AppBar position='static'>
+        <AppBar position='static' style={{backgroundColor:'#9e2A2b'}}>
           <Toolbar>
-            <IconButton onClick={() => this.toggleDrawer(true)} className={classes.menuButton} color='inherit' aria-label='Menu'>
+            <IconButton onClick={() => this.toggleDrawer(true)} className={classes.menuButton} style={{ color:'#FFF3B0'}} color='inherit' aria-label='Menu'>
               <MenuIcon />
             </IconButton>
             <Typography variant='h6' color='inherit' className={classes.grow}>
               Pokemon Click Game
             </Typography>
-            <Link to='/' style={{ color: 'white', textDecoration: 'none' }}>
+            <Link to='/' style={{ color: '#FFF3B0', textDecoration: 'none' }}>
               <Button color='inherit'>Home
               </Button>
             </Link>
-            <Link to='/game' style={{ color: 'white', textDecoration: 'none' }}>
+            <Link to='/game' style={{ color: '#FFF3B0', textDecoration: 'none' }}>
               <Button color='inherit'>
                 New Game
               </Button>
             </Link>
-            <Link to='/leaderboard' style={{ color: 'white', textDecoration: 'none' }}>
+            <Link to='/leaderboard' style={{ color: '#FFF3B0', textDecoration: 'none' }}>
               <Button color='inherit'>
                 Leaderboard
               </Button>

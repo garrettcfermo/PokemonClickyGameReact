@@ -10,7 +10,7 @@ class App extends Component {
     return (
      <>
      <Router>
-       <div>
+          <div style={{ backgroundColor: '#9e2A2b'}}>
          <Navbar />
          <Route exact path='/' component={Home}/>
          <Route path='/game' component={Game} />

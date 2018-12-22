@@ -22,6 +22,7 @@ class Game extends Component {
       this.setState({ pokemon: shuffle(Pokemon), clicked: clickedArr })
     }
   }
+  
   render() {
     return (
       <>
