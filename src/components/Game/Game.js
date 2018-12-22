@@ -4,6 +4,13 @@ import PokemonCard from './gameComponents/PokemonCard'
 import shuffle from 'shuffle-array'
 import Grid from '@material-ui/core/Grid'
 
+const styles = {
+  pokeCard: {
+    width: '5vw'
+  }
+}
+
+
 class Game extends Component {
   state = {
     pokemon: [],
@@ -22,17 +29,16 @@ class Game extends Component {
       this.setState({ pokemon: shuffle(Pokemon), clicked: clickedArr })
     }
   }
-  
+
   render() {
     return (
-      <>
-        <h1>Hello I am The Game Page!</h1>
-        <Grid container spacing={16}>
-          {
-            this.state.pokemon.map((pokemon, index) => index < 16 ? <Grid onClick={() => this.handleClick(pokemon.name)} item xs={3}><PokemonCard name={pokemon.name} image={pokemon.image} /></Grid> : null)
-          }
-        </Grid>
-      </>
+      
+      <Grid container style={{minHeight:'92vh', marginLeft:'5%', width:'auto'}} spacing={32}>
+        {
+          this.state.pokemon.map((pokemon, index) => index < 16 ? <Grid onClick={() => this.handleClick(pokemon.name)} item xs={3}><PokemonCard name={pokemon.name} image={pokemon.image} /></Grid> : null)
+        }
+      </Grid>
+  
     )
   }
 }

@@ -6,10 +6,12 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import { Divider } from '@material-ui/core';
+
 
 const styles = {
   card: {
-    maxWidth: 345,
+    maxWidth: 200,
   },
   media: {
     objectFit: 'center',
@@ -32,8 +34,9 @@ const PokemonCard = (props) => {
           image={props.image}
           title={props.name}
         />
+        <Divider />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography style={{margin:'auto', textAlign:'center'}} gutterBottom variant="h5" component="h2">
             {props.name}
           </Typography>
         </CardContent>
