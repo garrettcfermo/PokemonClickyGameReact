@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/PokemonClickyGameReact/precache-manifest.a2f445b882e8705ed1d85a5482b30004.js"
+  "/garrettcfermo/PokemonClickyGameReact/precache-manifest.5863b274cc09e93ce923c31ce5dad27b.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/PokemonClickyGameReact/index.html", {
+workbox.routing.registerNavigationRoute("/garrettcfermo/PokemonClickyGameReact/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
