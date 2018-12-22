@@ -86,6 +86,10 @@ class Navbar extends Component {
             {
               this.props.isSignedIn ? (
                 <>
+                  <Button style={{
+                    color: '#FFF3B0'}}>
+                    {this.props.userName}
+                  </Button>
                   <Link to='/' style={{ color: '#FFF3B0', textDecoration: 'none' }}>
                     <Button color='inherit'>Home
                     </Button>

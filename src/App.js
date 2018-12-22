@@ -8,12 +8,12 @@ import firebase from 'firebase'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 
 firebase.initializeApp({
-  apiKey: "AIzaSyBFBDSk9godsWsNypRzEVaCJjwHie4XSQ4",
-  authDomain: "pokemonlclickygame.firebaseapp.com",
-  databaseURL: "https://pokemonlclickygame.firebaseio.com",
-  projectId: "pokemonlclickygame",
-  storageBucket: "pokemonlclickygame.appspot.com",
-  messagingSenderId: "1038181149499"
+  apiKey: "AIzaSyBOwOqfO9Jb2wC98cOReQyUL9lUixOVuCM",
+  authDomain: "pokemonclickygame-75db5.firebaseapp.com",
+  databaseURL: "https://pokemonclickygame-75db5.firebaseio.com",
+  projectId: "pokemonclickygame-75db5",
+  storageBucket: "pokemonclickygame-75db5.appspot.com",
+  messagingSenderId: "171203273936"
 })
 
 const uiConfig = {
@@ -30,14 +30,30 @@ const uiConfig = {
 class App extends Component {
 
   state = {
-    isSignedIn: false
+    isSignedIn: false,
+    name: '',
+    uid: ''
   }
 
   componentDidMount() {
     this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(
       (user) => this.setState({ isSignedIn: !!user })
     )
+    firebase.auth().onAuthStateChanged(user => {
+      firebase.database().ref(`/users/${user.uid}`).once('value')
+      .then(r => r.val())
+      .then(dbUser => {
+        this.setState({name:user.displayName , uid: user.uid })
+        if(!dbUser) {
+          firebase.database().ref(`/users/${user.uid}`).push({
+            name: user.displayName,
+            scores :[]
+          })
+        }
+      })
+    })
   }
+
 
   componentWillUnmount() {
     this.unregisterAuthObserver()
@@ -48,9 +64,9 @@ class App extends Component {
       <>
         <Router>
           <div style={{ backgroundColor: '#9e2A2b' }}>
-            <Navbar uiConfig={uiConfig} isSignedIn={this.state.isSignedIn} />
+            <Navbar uiConfig={uiConfig} isSignedIn={this.state.isSignedIn} userName={this.state.name} />
             <Route exact path='/' component={Home} />
-            <Route path='/game' component={Game} />
+            <Route path='/game' component={() => <Game uid={this.state.uid} />} />
             <Route path='/leaderboard' component={LeaderBoard} />
           </div>
         </Router>
