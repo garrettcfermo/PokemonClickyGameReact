@@ -9,6 +9,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import Grid from '@material-ui/core/Grid'
 
 
+
 const styles = theme => ({
   root: {
     width: '100%'
@@ -54,6 +55,8 @@ class Home extends Component {
 
     return (
       <>
+        
+
         <Grid container spacing={0}>
           <Grid item xs={12} >
             <img className={classes.picture} src="https://i.pinimg.com/originals/1c/a6/e1/1ca6e1c35e2d884230242cc0326dbf28.jpg" alt="Pokemon" />

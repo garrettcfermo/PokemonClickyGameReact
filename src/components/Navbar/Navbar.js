@@ -16,6 +16,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import InboxIcon from '@material-ui/icons/MoveToInbox'
 import MailIcon from '@material-ui/icons/Mail'
+import firebase from 'firebase'
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 
 const styles = {
   root: {
@@ -73,28 +75,40 @@ class Navbar extends Component {
     )
     return (
       <div className={classes.root}>
-        <AppBar position='static' style={{backgroundColor:'#9e2A2b'}}>
+        <AppBar position='static' style={{ backgroundColor: '#9e2A2b' }}>
           <Toolbar>
-            <IconButton onClick={() => this.toggleDrawer(true)} className={classes.menuButton} style={{ color:'#FFF3B0'}} color='inherit' aria-label='Menu'>
+            <IconButton onClick={() => this.toggleDrawer(true)} className={classes.menuButton} style={{ color: '#FFF3B0' }} color='inherit' aria-label='Menu'>
               <MenuIcon />
             </IconButton>
             <Typography variant='h6' color='inherit' className={classes.grow}>
               Pokemon Click Game
             </Typography>
-            <Link to='/' style={{ color: '#FFF3B0', textDecoration: 'none' }}>
-              <Button color='inherit'>Home
-              </Button>
-            </Link>
-            <Link to='/game' style={{ color: '#FFF3B0', textDecoration: 'none' }}>
-              <Button color='inherit'>
-                New Game
-              </Button>
-            </Link>
-            <Link to='/leaderboard' style={{ color: '#FFF3B0', textDecoration: 'none' }}>
-              <Button color='inherit'>
-                Leaderboard
-              </Button>
-            </Link>
+            {
+              this.props.isSignedIn ? (
+                <>
+                  <Link to='/' style={{ color: '#FFF3B0', textDecoration: 'none' }}>
+                    <Button color='inherit'>Home
+                    </Button>
+                  </Link>
+                  <Link to='/game' style={{ color: '#FFF3B0', textDecoration: 'none' }}>
+                    <Button color='inherit'>
+                      New Game
+                    </Button>
+                  </Link>
+                  <Link to='/leaderboard' style={{ color: '#FFF3B0', textDecoration: 'none' }}>
+                    <Button color='inherit'>
+                      Leaderboard
+                    </Button>
+                  </Link>
+                  <Link to='/' style={{ color: '#FFF3B0', textDecoration: 'none' }}>
+                    <Button onClick={() => firebase.auth().signOut()} color='inherit'>
+                      Sign Out
+                    </Button>
+                  </Link>
+                </>
+              ) :
+                <StyledFirebaseAuth uiConfig={this.props.uiConfig} firebaseAuth={firebase.auth()} />
+            }
             {/* <Button color='inherit'>Login</Button> */}
             <Drawer open={this.state.open} onClose={() => this.toggleDrawer(false)}>
               <div
